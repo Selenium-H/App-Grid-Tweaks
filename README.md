@@ -3,11 +3,11 @@
 </p>
 
 <h1 align="center">
-  Notification Center
+  App Grid Tweaks
 </h1>
 
 <p align="center">
-Version 20
+Version 1
 </p>
 
 <p align="center">
