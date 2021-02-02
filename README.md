@@ -34,10 +34,6 @@ A GNOME Shell extension to tweaks application grid and customizations.
 <img src = /Screenshots/Image_04.png >
 </p>
 
-<p align="center">
-<img src = /Screenshots/Image_05.png >
-</p>
-
 <h1 align="center">
   Installations
 </h1>
@@ -63,6 +59,6 @@ Enable it using GNOME Tweak Tool.
 </h1>
 
 This project is inspired from
-[Application View Columns Extension](https://extensions.gnome.org/extension/2159/application-view-columns/) by fawtytoo, 
+[Application View Columns Extension](https://extensions.gnome.org/extension/2159/application-view-columns/) by fawtytoo and
 [More columns in application view](https://extensions.gnome.org/extension/1305/more-columns-in-applications-view/) by Maestroschan.
 
