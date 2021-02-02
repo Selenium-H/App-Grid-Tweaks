@@ -11,11 +11,15 @@ Version 1
 </p>
 
 <p align="center">
-A GNOME Shell extension that enables notification center indicator on top panel and customizations.
+A GNOME Shell extension to tweaks application grid and customizations.
 </p>
 
 <p align="center">
 <img src = /Screenshots/Image_01.png >
+</p>
+
+<p align="center">
+<img src = /Screenshots/Image_02.png >
 </p>
 
 <h1 align="center">
