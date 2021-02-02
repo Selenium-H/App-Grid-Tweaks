@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Version 1.00
+=============
+ 
+-->
+<schemalist gettext-domain="gnome-shell-extensions">
+
+  <schema id="org.gnome.shell.extensions.app-grid-tweaks" path="/org/gnome/shell/extensions/app-grid-tweaks/">
+    
+    <key name="open-animation-time" type="i">
+      <default>300</default>
+      <summary>App Grid Opening animation time [ in ms ]</summary>
+      <description>App Grid Opening animation time [ in ms ]</description>
+    </key>
+    
+    <key name="close-animation-time" type="i">
+      <default>175</default>
+      <summary>App Grid Closing animation time [ in ms ]</summary>
+      <description>App Grid Closing animation time [ in ms ]</description>
+    </key>
+
+    <key name="page-switch-animation-time" type="i">
+      <default>300</default>
+      <summary>Page switch animation time [ in ms ]</summary>
+      <description>Page switch animation time  [ in ms ]</description>
+    </key>
+
+    <key name="appgrid-max-rows" type="i">
+      <default>4</default>
+      <summary>App Grid Rows</summary>
+      <description>App Grid Rows</description>
+    </key>
+
+    <key name="appgrid-max-columns" type="i">
+      <default>6</default>
+      <summary>App Grid Columns</summary>
+      <description>App Grid Columns</description>
+    </key>
+
+    <key name="appgrid-icon-size" type="i">
+      <default>96</default>
+      <summary>App Icon size</summary>
+      <description>App Icon</description>
+    </key>
+
+    <key name="app-icon-font-size" type="i">
+      <default>13</default>
+      <summary>App Icon Label font size</summary>
+      <description>App Icon Label font size</description>
+    </key>
+
+    <key name="folder-max-rows" type="i">
+      <default>3</default>
+      <summary>Folder Rows</summary>
+      <description>Folder Rows</description>
+    </key>
+
+    <key name="folder-max-columns" type="i">
+      <default>3</default>
+      <summary>Folder Columns</summary>
+      <description>Folder Columns</description>
+    </key>
+
+    <key name="folder-icon-size" type="i">
+      <default>96</default>
+      <summary>Folder App Icon Size</summary>
+      <description>Folder App Icon Size</description>
+    </key>
+    
+    <key name="reload-signal" type="b">
+      <default>false</default>
+      <summary>Signals the extension to reload </summary>
+      <description>Signals the extension to reload</description>
+    </key>   
+    
+  </schema>
+  
+</schemalist>

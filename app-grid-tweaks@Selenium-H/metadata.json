@@ -1,0 +1,13 @@
+{
+"name": "App Grid Tweaks", 
+"description": "Customize the application grid view.\n\nSet the rows, columns and the app icon size for a particular configuration to work.\nIf the screen space is out numbered, reduce the icon size to fit all the rows and columns.\nOr reduce the number of rows and columns.\n\nPress the Refresh button on the left of header bar to apply changes", 
+"comment": "Customize the application grid view.",
+"uuid": "app-grid-tweaks@Selenium-H", 
+"settings-schema": "org.gnome.shell.extensions.app-grid-tweaks", 
+"shell-version": [
+	"3.38"
+],
+"status" : " ",
+"url": "https://github.com/Selenium-H/App-Grid-Tweaks", 
+"version": 1
+}
