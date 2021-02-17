@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Version 1.00
+Version 1.01
 =============
  
 -->
@@ -44,7 +44,7 @@ Version 1.00
       <description>App Icon</description>
     </key>
 
-    <key name="app-icon-font-size" type="i">
+    <key name="app-icon-font-size" type="d">
       <default>13</default>
       <summary>App Icon Label font size</summary>
       <description>App Icon Label font size</description>
@@ -77,3 +77,5 @@ Version 1.00
   </schema>
   
 </schemalist>
+
+
