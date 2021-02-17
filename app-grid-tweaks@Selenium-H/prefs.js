@@ -1,9 +1,9 @@
-
 /*
-Version 1.00
-=============
+
+Version 1.01
+============
  
-/**/
+*/
 
 const Config         = imports.misc.config;
 const ExtensionUtils = imports.misc.extensionUtils;
@@ -113,7 +113,9 @@ const ExtensionPreferencesWindow_AppGridTweaksExtension = new GObject.Class({
     });    
 
     aboutDialogAction.connect('activate', ()=> {  
-      (new Gtk.AboutDialog({ transient_for: this.toplevel, use_header_bar: true, modal: true, logo: (new Gtk.Image({ file: Extension.dir.get_child('eicon.png').get_path(), pixel_size: 96 })).get_pixbuf(), program_name: Metadata.name, version: Metadata.version.toString()+_(Metadata.status), comments: _(Metadata.comment), license_type: 3    } )).show_all();
+      let aboutDialog = new Gtk.AboutDialog({ transient_for: this.toplevel, modal: true, logo: (new Gtk.Image({ file: Extension.dir.get_child('eicon.png').get_path(), pixel_size: 128 })).get_pixbuf(), program_name: Extension.metadata.name, version: Extension.metadata.version.toString()+_(Extension.metadata.status), comments: _(Extension.metadata.comment), license_type: 3    } );
+      aboutDialog.get_header_bar().get_custom_title().visible = true;
+      aboutDialog.show_all();      
     });
     
     appMenu.connect("button-release-event", ()=> {
@@ -220,6 +222,19 @@ const PrefsWindow_AppGridTweaksExtension =  new GObject.Class({
     let prefLabel = new Gtk.Label({xalign: 1, label: _(settings.settings_schema.get_key(KEY).get_summary()), halign: Gtk.Align.START});
     this.attach(prefLabel,0,pos,1,1);
   },
+
+  prefDouble: function(KEY, pos, mn, mx, st) {
+  
+    let timeSetting = Gtk.SpinButton.new_with_range(mn, mx, st);
+    timeSetting.set_value(settings.get_double(KEY));
+    timeSetting.connect('notify::value', function(spin) {
+      settings.set_double(KEY,spin.get_value());
+    });
+
+    this.attachLabel(KEY,pos);
+    this.attach(timeSetting, 1, pos, 1, 1);
+    
+  },
    
   prefTime: function(KEY, pos, mn, mx, st) {
   
@@ -235,7 +250,6 @@ const PrefsWindow_AppGridTweaksExtension =  new GObject.Class({
   },
 
 });
-
 
 const PrefsWindowForAppGrid_AppGridTweaksExtension =  new GObject.Class({
   Name: "PrefsWindowForAppGrid_AppGridTweaksExtension",
@@ -253,7 +267,7 @@ const PrefsWindowForAppGrid_AppGridTweaksExtension =  new GObject.Class({
     this.prefTime("appgrid-max-rows",           pos++, 4,  20,    1  );
     this.prefTime("appgrid-max-columns",        pos++, 4,  20,    1  );
     this.prefTime("appgrid-icon-size",          pos++, 32, 256,   1  );
-    this.prefTime("app-icon-font-size",         pos++, 0,  20,    0.1);    
+    this.prefDouble("app-icon-font-size",       pos++, 0,  20,    0.1);    
     this.prefTime("open-animation-time",        pos++, 1,  10000, 1  );
     this.prefTime("close-animation-time",       pos++, 1,  10000, 1  );
     this.prefTime("page-switch-animation-time", pos++, 1,  10000, 1  );
