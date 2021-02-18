@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Version 1.01
+Version 1.02
 =============
  
 -->
@@ -50,6 +50,12 @@ Version 1.01
       <description>App Icon Label font size</description>
     </key>
 
+    <key name="label-style" type="s">
+      <default>"normal"</default>
+      <summary>Application label style</summary>
+      <description>Application label style</description>
+    </key>   
+
     <key name="folder-max-rows" type="i">
       <default>3</default>
       <summary>Folder Rows</summary>
@@ -77,5 +83,3 @@ Version 1.01
   </schema>
   
 </schemalist>
-
-
