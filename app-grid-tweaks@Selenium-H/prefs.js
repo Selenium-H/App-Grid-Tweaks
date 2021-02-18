@@ -1,6 +1,6 @@
 /*
 
-Version 1.01
+Version 1.02
 ============
  
 */
@@ -223,6 +223,23 @@ const PrefsWindow_AppGridTweaksExtension =  new GObject.Class({
     this.attach(prefLabel,0,pos,1,1);
   },
 
+  prefCombo: function(KEY, pos, options, items) {
+  
+    let SettingCombo = new Gtk.ComboBoxText();
+    for (let i = 0; i < options.length; i++) {
+      SettingCombo.append(options[i],  items[i]);
+    }
+    SettingCombo.set_active(options.indexOf(settings.get_string(KEY)));
+    SettingCombo.connect('changed', Lang.bind(this, function(widget) {
+      settings.set_string(KEY, options[widget.get_active()]);
+      reloadExtension();
+    }));
+    
+    this.attachLabel(KEY,pos);
+    this.attach(SettingCombo, 1, pos, 1, 1);
+    
+  },
+
   prefDouble: function(KEY, pos, mn, mx, st) {
   
     let timeSetting = Gtk.SpinButton.new_with_range(mn, mx, st);
@@ -268,6 +285,7 @@ const PrefsWindowForAppGrid_AppGridTweaksExtension =  new GObject.Class({
     this.prefTime("appgrid-max-columns",        pos++, 4,  20,    1  );
     this.prefTime("appgrid-icon-size",          pos++, 32, 256,   1  );
     this.prefDouble("app-icon-font-size",       pos++, 0,  20,    0.1);    
+    this.prefCombo("label-style",               pos++, [ "normal", "normalwithshadow", "bold", "boldwithshadow" ], [ _("Normal"), _("Normal with Shadow"), _("Bold"), _("Bold with Shadow") ] );        
     this.prefTime("open-animation-time",        pos++, 1,  10000, 1  );
     this.prefTime("close-animation-time",       pos++, 1,  10000, 1  );
     this.prefTime("page-switch-animation-time", pos++, 1,  10000, 1  );
