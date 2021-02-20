@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Version 1.02
-=============
+Version 1.03
+============
  
 -->
 <schemalist gettext-domain="gnome-shell-extensions">
@@ -51,7 +51,7 @@ Version 1.02
     </key>
 
     <key name="label-style" type="s">
-      <default>"normal"</default>
+      <default>"font-weight: normal;"</default>
       <summary>Application label style</summary>
       <description>Application label style</description>
     </key>   

@@ -1,6 +1,6 @@
 /*
 
-Version 1.02
+Version 1.03
 ============
  
 */
@@ -71,24 +71,7 @@ class AppGridTweaks {
     IconGrid.ANIMATION_TIME_OUT = this.prefs.get_int("close-animation-time");
     IconGrid.PAGE_SWITCH_TIME   = this.prefs.get_int("page-switch-animation-time");
     
-    MainAppDisplay._grid.style = "column-spacing: "+this.iconSize*0.35+"px; row-spacing: "+this.iconSize*0.35+"px; font-size: "+this.prefs.get_double("app-icon-font-size")+"px;"; 
-    
-    switch(this.prefs.get_string("label-style")) {
-      case "bold":
-        MainAppDisplay._grid.style += "font-weight: bold;";
-        break;
-      case "boldwithshadow":
-        MainAppDisplay._grid.style += "font-weight: bold; text-shadow: 2px 3px 3px #000000, 2px 3px 3px #000000;";
-        break;
-      case "normalwithshadow":
-        MainAppDisplay._grid.style += "font-weight: normal; text-shadow: 2px 3px 3px #000000, 2px 3px 3px #000000;";
-        break;      
-      default:
-      case "normal":
-        MainAppDisplay._grid.style += "font-weight: normal;";
-        break;
-    }
-    
+    MainAppDisplay._grid.style = "column-spacing: "+this.iconSize*0.35+"px; row-spacing: "+this.iconSize*0.35+"px; font-size: "+this.prefs.get_double("app-icon-font-size")+"px;"+this.prefs.get_string("label-style"); 
     MainAppDisplay._grid.layout_manager.rows_per_page = this.prefs.get_int("appgrid-max-rows");
     MainAppDisplay._grid.layout_manager.columns_per_page = this.prefs.get_int("appgrid-max-columns"); 
     MainAppDisplay._grid.layout_manager.fixed_icon_size = this.iconSize;
@@ -113,7 +96,6 @@ class AppGridTweaks {
     MainAppDisplay._grid.layout_manager.rows_per_page = this.maxRows;
     MainAppDisplay._grid.layout_manager.columns_per_page = this.maxColumns; 
     MainAppDisplay._grid.layout_manager.fixed_icon_size = -1;
-    MainAppDisplay._scrollView.style = "";
     this.iconSize = MainAppDisplay._grid.layout_manager._findBestIconSize();
     for (const appIcon of MainAppDisplay._grid.layout_manager._container) {
       appIcon.icon.setIconSize(this.iconSize); 
