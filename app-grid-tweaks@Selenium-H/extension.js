@@ -1,13 +1,13 @@
 /*
 
-Version 1.03
+Version 2.00
 ============
  
 */
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const IconGrid       = imports.ui.iconGrid;
-const MainAppDisplay = imports.ui.main.overview.viewSelector.appDisplay;
+const MainAppDisplay = imports.ui.main.overview._overview._controls._appDisplay;
 
 let appGridTweaker = null;
 

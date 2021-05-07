@@ -1,11 +1,10 @@
 /*
 
-Version 1.03
+Version 2.00
 ============
  
 */
 
-const Config         = imports.misc.config;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Extension      = ExtensionUtils.getCurrentExtension();
 const Metadata       = Extension.metadata;
@@ -36,8 +35,6 @@ function buildPrefsWidget() {
     new ExtensionPreferencesWindow_AppGridTweaksExtension( widget );
     return false;
   });
- 
-  widget.show_all();  
   return widget;  
   
 }
@@ -63,9 +60,9 @@ const ExtensionPreferencesWindow_AppGridTweaksExtension = new GObject.Class({
 
   _init: function( widget ) {
   
-    this.toplevel  = widget.get_toplevel();
+    this.toplevel  = widget.get_native();
     this.headerBar = this.toplevel.get_titlebar();
-    this.headerBar.custom_title = new Gtk.StackSwitcher({expand:true, halign: Gtk.Align.CENTER, visible: true, stack: widget});
+    this.headerBar.set_title_widget(new Gtk.StackSwitcher({halign: Gtk.Align.CENTER, stack: widget}));
     this.createAppMenu();  
     this.createRefreshButton();  
     
@@ -73,66 +70,60 @@ const ExtensionPreferencesWindow_AppGridTweaksExtension = new GObject.Class({
   
   createAppMenu: function( ) {
       
-    let preferencesDialogAction = new Gio.SimpleAction({ name: 'app.preferences'});  
-    let helpDialogAction        = new Gio.SimpleAction({ name: 'app.help'});
-    let aboutDialogAction       = new Gio.SimpleAction({ name: 'app.about'});
+    let preferencesDialogAction = new Gio.SimpleAction({ name: 'preferences'});  
+    let helpDialogAction        = new Gio.SimpleAction({ name: 'help'});
+    let aboutDialogAction       = new Gio.SimpleAction({ name: 'about'});
     let actionGroup             = new Gio.SimpleActionGroup();
     let menu                    = new Gio.Menu();
-    let appMenu                 = new Gtk.PopoverMenu();
-    let appMenuButton           = new Gtk.MenuButton({ popover: appMenu, image: new Gtk.Image({ gicon: new Gio.ThemedIcon({ name: "open-menu-symbolic" }), icon_size: Gtk.IconSize.BUTTON, visible: true, }), visible:true});
-    
-    actionGroup.add_action(aboutDialogAction)
-    actionGroup.add_action(helpDialogAction)
-    actionGroup.add_action(preferencesDialogAction)
+    let appMenu                 = Gtk.PopoverMenu.new_from_model(menu);
+    let appMenuButton           = new Gtk.MenuButton({ popover: appMenu, icon_name: "open-menu-symbolic", visible:true});
 
-    menu.append(_("Preferences"),               "app.preferences" ); 
-    menu.append(_("Help"),                      "app.help"        ); 
-    menu.append(_("About")+" App Grid Tweaks ", "app.about"       );
-    appMenu.bind_model(menu, "app"); 
-        
+    menu.append(_("Preferences"),               "prefswindow.preferences");
+    menu.append(_("Help"),                      "prefswindow.help"       );
+    menu.append(_("About")+" App Grid Tweaks", "prefswindow.about"      );
+    
+    actionGroup.add_action(aboutDialogAction);
+    actionGroup.add_action(helpDialogAction);
+    actionGroup.add_action(preferencesDialogAction);
+    
+    this.toplevel.insert_action_group('prefswindow', actionGroup);    
     this.headerBar.pack_end(appMenuButton);
-    this.toplevel.insert_action_group('app', actionGroup);    
     
     preferencesDialogAction.connect('activate', ()=> {
-      let dialog                = new Gtk.Dialog({ title: _("Preferences"),transient_for: this.toplevel,use_header_bar: true, modal: true });
-      let vbox                  = new Gtk.Box({ orientation: Gtk.Orientation.VERTICAL, margin: 30 });    
+      let dialog = new Gtk.Dialog({ title: _("Preferences"),transient_for: this.toplevel,use_header_bar: true, modal: true });
+      let vbox                  = new Gtk.Box({ hexpand:true, vexpand: true, valign:Gtk.Align.CENTER, orientation: Gtk.Orientation.VERTICAL });    
       this.resetExtensionButton = new ExtensionResetButton_AppGridTweaksExtension(this.toplevel );
-      vbox.pack_start(this.resetExtensionButton, false, false, 0);
-      dialog.get_content_area().pack_start(vbox, false, false, 0);  
-      dialog.show_all();  
+      vbox.append(this.resetExtensionButton);
+      dialog.get_content_area().append(vbox);  
+      dialog.present();  
     });
 
     helpDialogAction.connect('activate', ()=> {
       let dialog    = new Gtk.Dialog({ title: _("Help"), transient_for: this.toplevel, use_header_bar: true, modal: true });
-      let vbox      = new Gtk.Box({ orientation: Gtk.Orientation.VERTICAL, margin: 30 });    
+      let vbox      = new Gtk.Box({ hexpand:true, vexpand: true, valign:Gtk.Align.CENTER, orientation: Gtk.Orientation.VERTICAL });    
       let firstInfo = new Gtk.Label({ justify: 0, use_markup: true, label: _(Metadata.description)});  
-      vbox.pack_start(firstInfo,            false, false, 0);
-      dialog.get_content_area().pack_start(vbox, false, false, 0);  
-  
-      dialog.show_all();  
+      vbox.append(firstInfo);
+      dialog.get_content_area().append(vbox);  
+      dialog.present();  
     });    
 
     aboutDialogAction.connect('activate', ()=> {  
-      let aboutDialog = new Gtk.AboutDialog({ transient_for: this.toplevel, modal: true, logo: (new Gtk.Image({ file: Extension.dir.get_child('eicon.png').get_path(), pixel_size: 128 })).get_pixbuf(), program_name: Extension.metadata.name, version: Extension.metadata.version.toString()+_(Extension.metadata.status), comments: _(Extension.metadata.comment), license_type: 3    } );
-      aboutDialog.get_header_bar().get_custom_title().visible = true;
-      aboutDialog.show_all();      
+      let aboutDialog = new Gtk.AboutDialog({ transient_for: this.toplevel, modal: true, logo: (new Gtk.Image({ file: Extension.dir.get_child('eicon.png').get_path(), pixel_size: 128 })).get_paintable(), program_name: Extension.metadata.name, version: Extension.metadata.version.toString()+_(Extension.metadata.status), comments: _(Extension.metadata.comment), license_type: 3 } );
+      aboutDialog.get_titlebar().get_title_widget().visible = true;
+      aboutDialog.present();      
     });
     
-    appMenu.connect("button-release-event", ()=> {
-      appMenu.popdown();
-    });
-            
   },
   
   createRefreshButton: function() {
   
-    let refreshButton = new Gtk.Button({ image: new Gtk.Image({ gicon: new Gio.ThemedIcon({ name: "view-refresh-symbolic" }), icon_size: Gtk.IconSize.BUTTON, visible: true, }), visible:true}); 
+    let refreshButton = new Gtk.Button({ icon_name: "view-refresh-symbolic", visible:true}); 
     refreshButton.connect('clicked', ()=> {
       reloadExtension();
     });
     this.headerBar.pack_start(refreshButton);
 
-  },  
+  },   
   
 });
 
@@ -152,10 +143,10 @@ const ExtensionResetButton_AppGridTweaksExtension =  new GObject.Class({
   
     let dialog = new Gtk.MessageDialog({ transient_for: object.get_toplevel ? object.get_toplevel() : object, modal: true });  
     dialog.set_default_response(Gtk.ResponseType.OK);
-    dialog.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL);
-    dialog.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK);
+    dialog.add_button("Cancel", Gtk.ResponseType.CANCEL);
+    dialog.add_button("OK", Gtk.ResponseType.OK);
     dialog.set_markup("<big><b>"+_("Reset App Grid Tweaks to defaults?")+"</b></big>");
-    dialog.get_message_area().pack_start(new Gtk.Label({ wrap: true, justify: 3, use_markup: true, label: _("Resetting the extension will discard the current preferences configuration and restore default one.")}), true, true, 0);
+    dialog.get_message_area().append(new Gtk.Label({ wrap: true, justify: 3, use_markup: true, label: _("Resetting the extension will discard the current preferences configuration and restore default one.")}), true, true, 0);
     dialog.connect('response', Lang.bind(this, function(dialog, id) {
       if(id != Gtk.ResponseType.OK) {
         dialog.destroy();  
@@ -183,7 +174,7 @@ const ExtensionResetButton_AppGridTweaksExtension =  new GObject.Class({
     reloadExtension();
     }));
     
-    dialog.show_all();
+    dialog.present();
 		
   }, 
 	  
@@ -216,7 +207,7 @@ const PrefsWindow_AppGridTweaksExtension =  new GObject.Class({
 
   _init: function(page) {
     
-    this.parent({ column_spacing: 80, halign: Gtk.Align.CENTER, margin: 20, row_spacing: 20 ,border_width:20});
+    this.parent({ column_spacing: 80, halign: Gtk.Align.CENTER,  margin_top: 20, margin_end: 20, margin_bottom: 20, margin_start: 20, row_spacing: 20 });
 
   },
 
