@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-Version 2
+Version 3
 </p>
 
 <p align="center">
