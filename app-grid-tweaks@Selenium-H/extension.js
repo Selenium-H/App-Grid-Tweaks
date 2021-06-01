@@ -1,13 +1,16 @@
 /*
 
-Version 1.03
+Version 2.02
 ============
  
 */
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const IconGrid       = imports.ui.iconGrid;
-const MainAppDisplay = imports.ui.main.overview.viewSelector.appDisplay;
+const ExtensionUtils      = imports.misc.extensionUtils;
+const Extension           = ExtensionUtils.getCurrentExtension();
+const IconGrid            = imports.ui.iconGrid;
+const GNOME_SHELL_VERSION = imports.misc.config.PACKAGE_VERSION;
+const MainAppDisplay   = (GNOME_SHELL_VERSION < "40") ? imports.ui.main.overview.viewSelector.appDisplay : imports.ui.main.overview._overview._controls._appDisplay;
+const OverviewControls = imports.ui.overviewControls; 
 
 let appGridTweaker = null;
 
@@ -54,8 +57,8 @@ class AppGridTweaks {
       icon.view._grid.layout_manager.columns_per_page = (icon.view._appIds.length > this.fColumns) ? this.fColumns : icon.view._appIds.length ;
       icon.view._grid.layout_manager.fixed_icon_size = this.iconSize;
       icon._ensureFolderDialog();
-      icon._dialog._popdownCallbacks = [];        
-      icon._dialog.child.style = "height: "+(172+(icon.view._grid.layout_manager.rows_per_page*(this.iconSize+60)))+"px; width: "+Math.max((172+(icon.view._grid.layout_manager.columns_per_page*(this.iconSize+60))), 640)+"px;";
+      icon._dialog._popdownCallbacks = [];   
+      icon._dialog.child.style = "height: "+(icon.view._grid.layout_manager.rows_per_page*(this.iconSize+72)+152)+"px; width: "+(icon.view._grid.layout_manager.columns_per_page*(this.iconSize+78)+202)+"px;";
       icon.view._redisplay();
     });  
   
@@ -67,9 +70,14 @@ class AppGridTweaks {
     this.fRows = this.prefs.get_int("folder-max-rows"); 
     this.fColumns = this.prefs.get_int("folder-max-columns"); 
     
-    IconGrid.ANIMATION_TIME_IN  = this.prefs.get_int("open-animation-time");
-    IconGrid.ANIMATION_TIME_OUT = this.prefs.get_int("close-animation-time");
-    IconGrid.PAGE_SWITCH_TIME   = this.prefs.get_int("page-switch-animation-time");
+    if(GNOME_SHELL_VERSION < "40") {
+      IconGrid.ANIMATION_TIME_IN  = this.prefs.get_int("open-animation-time");
+      IconGrid.ANIMATION_TIME_OUT = this.prefs.get_int("close-animation-time");
+    }
+    else {
+      OverviewControls.SIDE_CONTROLS_ANIMATION_TIME = this.prefs.get_int("open-animation-time");
+    }
+    IconGrid.PAGE_SWITCH_TIME = this.prefs.get_int("page-switch-animation-time");
     
     MainAppDisplay._grid.style = "column-spacing: "+this.iconSize*0.35+"px; row-spacing: "+this.iconSize*0.35+"px; font-size: "+this.prefs.get_double("app-icon-font-size")+"px;"+this.prefs.get_string("label-style"); 
     MainAppDisplay._grid.layout_manager.rows_per_page = this.prefs.get_int("appgrid-max-rows");
@@ -78,18 +86,24 @@ class AppGridTweaks {
     for (const appIcon of MainAppDisplay._grid.layout_manager._container) {
       appIcon.icon.setIconSize(this.iconSize);
     }      
-      
-    this.oneTimeSig = (MainAppDisplay._folderIcons.length > 0) ? this.applyFolderViewChanges() : MainAppDisplay.connect("view-loaded", ()=> {
-      MainAppDisplay._grid.disconnect(this.oneTimeSig); 
+    if(MainAppDisplay._folderIcons.length > 0) {
       this.applyFolderViewChanges();
-    });
+    }
+    this.reloadingSig = MainAppDisplay.connect("view-loaded", ()=> {
+      this.applyFolderViewChanges();
+    });    
 
   }
   
   undoChanges() {
   
-    IconGrid.ANIMATION_TIME_IN  = 350;
-    IconGrid.ANIMATION_TIME_OUT = 175;
+    if(GNOME_SHELL_VERSION < "40") {
+      IconGrid.ANIMATION_TIME_IN  = 350;
+      IconGrid.ANIMATION_TIME_OUT = 175;
+    }
+    else {
+      OverviewControls.SIDE_CONTROLS_ANIMATION_TIME = 250;
+    }  
     IconGrid.PAGE_SWITCH_TIME   = 300;
     
     MainAppDisplay._grid._gridModes = this.gridMode;
@@ -101,6 +115,7 @@ class AppGridTweaks {
       appIcon.icon.setIconSize(this.iconSize); 
     }
 
+    MainAppDisplay.disconnect(this.reloadingSig);
     MainAppDisplay._folderIcons.forEach(icon => {
       icon.view._grid.layout_manager.rows_per_page    = 3;
       icon.view._grid.layout_manager.columns_per_page = 3;
