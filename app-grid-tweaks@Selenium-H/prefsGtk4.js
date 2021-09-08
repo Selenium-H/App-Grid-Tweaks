@@ -1,6 +1,6 @@
 /*
 
-Version 2.00
+Version 3.01
 ============
  
 */
@@ -274,8 +274,8 @@ const PrefsWindowForAppGrid_AppGridTweaksExtension =  new GObject.Class({
   displayPrefs: function() {
   
     let pos = 0;
-    this.prefTime("appgrid-max-rows",           pos++, 3,  20,    1  );
-    this.prefTime("appgrid-max-columns",        pos++, 4,  20,    1  );
+    this.prefTime("appgrid-max-rows",           pos++, 1,  20,    1  );
+    this.prefTime("appgrid-max-columns",        pos++, 1,  20,    1  );
     this.prefTime("appgrid-icon-size",          pos++, 32, 256,   1  );
     this.prefDouble("app-icon-font-size",       pos++, 0,  20,    0.1);    
     this.prefCombo("label-style",               pos++, [ "font-weight: normal;", "font-weight: normal; text-shadow: 2px 3px 3px #000000, 2px 3px 3px #000000;", "font-weight: bold;", "font-weight: bold; text-shadow: 2px 3px 3px #000000, 2px 3px 3px #000000;" ], [ _("Normal"), _("Normal with Shadow"), _("Bold"), _("Bold with Shadow") ] );        
@@ -300,8 +300,8 @@ const PrefsWindowForFolderGrid_AppGridTweaksExtension =  new GObject.Class({
   displayPrefs: function() {
   
     let pos = 0;
-    this.prefTime  ("folder-max-rows",    pos++, 3,  20,  1);
-    this.prefTime  ("folder-max-columns", pos++, 3,  20,  1);
+    this.prefTime  ("folder-max-rows",    pos++, 1,  20,  1);
+    this.prefTime  ("folder-max-columns", pos++, 1,  20,  1);
     //this.prefTime  ("folder-icon-size",   pos++, 16, 512, 1);
     
   },

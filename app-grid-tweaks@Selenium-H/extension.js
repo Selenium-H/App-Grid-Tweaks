@@ -1,6 +1,6 @@
 /*
 
-Version 2.02
+Version 3.01
 ============
  
 */
@@ -9,8 +9,8 @@ const ExtensionUtils      = imports.misc.extensionUtils;
 const Extension           = ExtensionUtils.getCurrentExtension();
 const IconGrid            = imports.ui.iconGrid;
 const GNOME_SHELL_VERSION = imports.misc.config.PACKAGE_VERSION;
-const MainAppDisplay   = (GNOME_SHELL_VERSION < "40") ? imports.ui.main.overview.viewSelector.appDisplay : imports.ui.main.overview._overview._controls._appDisplay;
-const OverviewControls = imports.ui.overviewControls; 
+const MainAppDisplay      = (GNOME_SHELL_VERSION < "40") ? imports.ui.main.overview.viewSelector.appDisplay : imports.ui.main.overview._overview._controls._appDisplay;
+const OverviewControls    = imports.ui.overviewControls; 
 
 let appGridTweaker = null;
 
@@ -92,6 +92,7 @@ class AppGridTweaks {
     this.reloadingSig = MainAppDisplay.connect("view-loaded", ()=> {
       this.applyFolderViewChanges();
     });    
+    MainAppDisplay._redisplay();
 
   }
   
