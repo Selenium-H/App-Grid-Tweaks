@@ -67,7 +67,7 @@
       </td>
     </tr>
   </table>
-  <br>Also, check the <a href="https://github.com/Selenium-H/App-Grid-Tweaks/tree/experimental">experimental</a> <code>branch</code> of this project for most recently updated version.<br><br>
+  <br>Also, please check the <a href="https://github.com/Selenium-H/App-Grid-Tweaks/tree/experimental">experimental</a> <code>branch</code> of this project for most recently updated version.<br><br>
 </div>
 
 <h1 align="center">
