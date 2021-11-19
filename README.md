@@ -50,14 +50,14 @@
     </tr>
     <tr>
       <td align="left">
-        <br>Download/clone this repository and extract the <code>.zip</code> file.<br>
+        <br>Download/clone this repository and extract <code>.zip</code> file.<br>
         <br>Open <code>Terminal</code> in extracted folder and run<br>
         <ul>
           <code>chmod +x INSTALL.sh && ./INSTALL.sh</code>
         </ul>
         <br>Restart <code>GNOME Shell</code>.</br>
         <ul>
-          <li>In<code>Xorg</code>, Press <code>Alt</code> + <code>F2</code>, Press <code>r</code>, Press <code>Enter</code>.</li>
+          <li>In<code>Xorg</code>, Press <kbd>Alt+F2</kbd>, Press <kbd>r</kbd>, Press <kbd>Enter</kbd>.</li>
           <li>In<code>Wayland</code>, Log out and Log in back.</li>
         </ul>
         <br>Enable it in <code>GNOME Tweaks</code> or <code>Extensions</code> application.<br>
