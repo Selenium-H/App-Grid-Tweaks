@@ -50,17 +50,17 @@
     </tr>
     <tr>
       <td align="left">
-        <br>Download or clone this repository and extract the <code>.zip</code> file.<br>
+        <br>Download/clone this repository and extract the <code>.zip</code> file.<br>
         <br>Open <code>Terminal</code> in extracted folder and run<br>
         <ul>
           <code>chmod +x INSTALL.sh && ./INSTALL.sh</code>
         </ul>
         <br>Restart <code>GNOME Shell</code>.</br>
         <ul>
-          <li>For <code>Xorg</code>, Press <code>Alt</code> + <code>F2</code>, Press <code>r</code>, Press <code>Enter</code>.</li>
-          <li>For <code>Wayland</code>, Log out and Log in back.</li>
+          <li>In<code>Xorg</code>, Press <code>Alt</code> + <code>F2</code>, Press <code>r</code>, Press <code>Enter</code>.</li>
+          <li>In<code>Wayland</code>, Log out and Log in back.</li>
         </ul>
-        <br>Enable it using <code>GNOME Tweaks</code> or <code>Extensions</code> application.<br>
+        <br>Enable it in <code>GNOME Tweaks</code> or <code>Extensions</code> application.<br>
       </td>
       <td>
         <a href="https://extensions.gnome.org/extension/3997/app-grid-tweaks/">Get this extension from here</a> 
