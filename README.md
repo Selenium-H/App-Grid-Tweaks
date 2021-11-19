@@ -57,8 +57,8 @@
         </ul>
         <br>Restart <code>GNOME Shell</code>.</br>
         <ul>
-          <li>In<code>Xorg</code>, Press <kbd>Alt+F2</kbd>, Press <kbd>r</kbd>, Press <kbd>Enter</kbd>.</li>
-          <li>In<code>Wayland</code>, Log out and Log in back.</li>
+          <li>In<code>Xorg</code>, press <kbd>Alt</kbd>+<kbd>F2</kbd>, press <kbd>r</kbd>, press <kbd>Enter</kbd>.</li>
+          <li>In<code>Wayland</code>, log out and log in back.</li>
         </ul>
         <br>Enable it in <code>GNOME Tweaks</code> or <code>Extensions</code> application.<br>
       </td>
