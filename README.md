@@ -42,7 +42,7 @@
   <table>
     <tr>
       <th>
-        <h2>Github</h2>
+        <h2>GitHub</h2>
       </th>
       <th>
         <h2>GNOME Shell Extension Website</h2>
@@ -57,8 +57,8 @@
         </ul>
         <br>Restart <code>GNOME Shell</code>.</br>
         <ul>
-          <li>In<code>Xorg</code>, press <kbd>Alt</kbd>+<kbd>F2</kbd>, press <kbd>r</kbd>, press <kbd>Enter</kbd>.</li>
-          <li>In<code>Wayland</code>, log out and log in back.</li>
+          <li>In <code>Xorg</code>, press <kbd>Alt</kbd>+<kbd>F2</kbd>, press <kbd>r</kbd>, press <kbd>Enter</kbd>.</li>
+          <li>In <code>Wayland</code>, log out and log in back.</li>
         </ul>
         <br>Enable it in <code>GNOME Tweaks</code> or <code>Extensions</code> application.<br>
       </td>
