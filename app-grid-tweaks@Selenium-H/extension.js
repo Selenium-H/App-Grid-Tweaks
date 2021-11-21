@@ -1,6 +1,6 @@
 /*
 
-Version 3.01
+Version 3.02
 ============
  
 */
@@ -58,7 +58,7 @@ class AppGridTweaks {
       icon.view._grid.layout_manager.fixed_icon_size = this.iconSize;
       icon._ensureFolderDialog();
       icon._dialog._popdownCallbacks = [];   
-      icon._dialog.child.style = "height: "+(icon.view._grid.layout_manager.rows_per_page*(this.iconSize+72)+152)+"px; width: "+(icon.view._grid.layout_manager.columns_per_page*(this.iconSize+78)+202)+"px;";
+      icon._dialog.child.style = "height: "+(icon.view._grid.layout_manager.rows_per_page*(this.iconSize+72)+152)+"px; width: "+Math.max(icon.view._grid.layout_manager.columns_per_page*(this.iconSize+78)+202, 640)+"px;";
       icon.view._redisplay();
     });  
   
