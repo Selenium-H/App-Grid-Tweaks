@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Version 1.03
+Version 3.03
 ============
  
 -->
@@ -42,6 +42,12 @@ Version 1.03
       <default>96</default>
       <summary>App Icon size</summary>
       <description>App Icon</description>
+    </key>
+    
+    <key name="side-padding" type="i">
+      <default>32</default>
+      <summary>Minimum side padding for App Grid [in px]</summary>
+      <description>Minimum side padding for App Grid [in px]</description>
     </key>
 
     <key name="app-icon-font-size" type="d">
