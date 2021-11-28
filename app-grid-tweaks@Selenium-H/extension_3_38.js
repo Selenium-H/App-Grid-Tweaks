@@ -1,5 +1,5 @@
 /*
-Version 3.03
+Version 3.04
 ============
  
 */
@@ -38,11 +38,7 @@ class AppGridTweaks {
 
   constructor(extensionPrefs) {
   
-    this.prefs      = extensionPrefs;
-    this.gridMode   = MainAppDisplay._grid._gridModes;
-    this.maxRows    = MainAppDisplay._grid.layout_manager.rows_per_page;
-    this.maxColumns = MainAppDisplay._grid.layout_manager.columns_per_page;    
-    MainAppDisplay._grid._gridModes = 0;   
+    this.prefs = extensionPrefs;
     
   }
 
@@ -62,11 +58,15 @@ class AppGridTweaks {
 
   startAppGridTweaks() {
 
+    this.gridMode   = MainAppDisplay._grid._gridModes;
+    this.maxRows    = MainAppDisplay._grid.layout_manager.rows_per_page;
+    this.maxColumns = MainAppDisplay._grid.layout_manager.columns_per_page;    
+    MainAppDisplay._grid._gridModes = 0;   
+
     this.iconSize = this.prefs.get_int("appgrid-icon-size");
     this.fRows = this.prefs.get_int("folder-max-rows"); 
     this.fColumns = this.prefs.get_int("folder-max-columns"); 
     
-
     IconGrid.ANIMATION_TIME_IN  = this.prefs.get_int("open-animation-time");
     IconGrid.ANIMATION_TIME_OUT = this.prefs.get_int("close-animation-time");
     IconGrid.PAGE_SWITCH_TIME = this.prefs.get_int("page-switch-animation-time");
@@ -90,7 +90,6 @@ class AppGridTweaks {
   
   undoChanges() {
   
-
     IconGrid.ANIMATION_TIME_IN  = 350;
     IconGrid.ANIMATION_TIME_OUT = 175;
     IconGrid.PAGE_SWITCH_TIME   = 300;
@@ -119,3 +118,4 @@ class AppGridTweaks {
   }
    
 }
+
