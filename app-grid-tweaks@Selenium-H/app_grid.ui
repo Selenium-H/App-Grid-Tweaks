@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="AdwPreferencesPage" id="Apps">
+    <property name="name">my-page</property>
+    <property name="title" translatable="yes">Apps</property>
+    <property name="icon-name">view-app-grid-symbolic</property>
+    <child>
+      <object class="AdwPreferencesGroup">
+        <property name="title" translatable="yes">App Grid Customize</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">App Grid Rows</property>
+						<property name="activatable-widget">appgrid-max-rows</property>
+            <child>
+              <object class="GtkSpinButton" id="appgrid-max-rows">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">1</property>
+                      <property name="upper">20</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">App Grid Columns</property>
+						<property name="activatable-widget">appgrid-max-columns</property>
+            <child>
+              <object class="GtkSpinButton" id="appgrid-max-columns">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">1</property>
+                      <property name="upper">20</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">App Icon Size</property>
+						<property name="activatable-widget">appgrid-icon-size</property>
+            <child>
+              <object class="GtkSpinButton" id="appgrid-icon-size">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">32</property>
+                      <property name="upper">256</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Minimum side padding for App Grid [in px]</property>
+						<property name="activatable-widget">side-padding</property>
+            <child>
+              <object class="GtkSpinButton" id="side-padding">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">0</property>
+                      <property name="upper">256</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">App Icon Label font size</property>
+						<property name="activatable-widget">app-icon-font-size</property>
+            <child>
+              <object class="GtkSpinButton" id="app-icon-font-size">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">0</property>
+                      <property name="upper">20</property>
+                      <property name="step-increment">0.1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        	<child>
+          	<object class="AdwComboRow" id="label-style">
+            	<property name="title" translatable="yes">Application Label style</property>
+            </object>
+          </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">App Grid Opening animation time [in ms]</property>
+						<property name="activatable-widget">open-animation-time</property>
+            <child>
+              <object class="GtkSpinButton" id="open-animation-time">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">1</property>
+                      <property name="upper">10000</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Page switch animation time [in ms]</property>
+						<property name="activatable-widget">page-switch-animation-time</property>
+            <child>
+              <object class="GtkSpinButton" id="page-switch-animation-time">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">1</property>
+                      <property name="upper">10000</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  
+  <object class="AdwPreferencesPage" id="Folder">
+    <property name="title" translatable="yes">Folders</property>
+    <property name="icon-name">folder-symbolic</property>
+    <child>
+      <object class="AdwPreferencesGroup">
+        <property name="title" translatable="yes">Folder Customize</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Folder Rows</property>
+						<property name="activatable-widget">folder-max-rows</property>
+            <child>
+              <object class="GtkSpinButton" id="folder-max-rows">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">1</property>
+                      <property name="upper">20</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Folder Columns</property>
+						<property name="activatable-widget">folder-max-columns</property>
+            <child>
+              <object class="GtkSpinButton" id="folder-max-columns">
+                <property name="valign">center</property>
+                	<property name="adjustment">
+                    <object class="GtkAdjustment">
+                    	<property name="lower">1</property>
+                      <property name="upper">20</property>
+                      <property name="step-increment">1</property>
+                    </object>
+                  </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>>
+    </child>
+  </object>
+  
+  <object class="GtkButton" id="refresh_button">
+    <property name="icon-name">view-refresh-symbolic</property>
+    <property name="valign">start</property>
+    <property name="halign">start</property>
+  </object>
+  
+  <menu id="about-menu">
+  	<section>
+  		<item>
+  			<attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">prefs.preferences</attribute>
+  		</item>
+  		<item>
+  			<attribute name="label" translatable="yes">Help</attribute>
+        <attribute name="action">prefs.help</attribute>
+  		</item>
+  		<item>
+  			<attribute name="label" translatable="yes">About</attribute>
+        <attribute name="action">prefs.about</attribute>
+  		</item>
+  	</section>
+  </menu>
+  
+  <object class="GtkMenuButton" id="about_button">
+    <property name="menu-model">about-menu</property>
+    <property name="icon-name">open-menu-symbolic</property>
+  </object>
+</interface>
