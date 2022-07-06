@@ -1,3 +1,4 @@
+const GLib = imports.gi.GLib;
 const Config = imports.misc.config;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Extension = ExtensionUtils.getCurrentExtension();
