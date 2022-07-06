@@ -7,7 +7,7 @@ function init() {
     if (Config.PACKAGE_VERSION >= '40') {
         Extension.imports.prefsAdw.init();
     } else {
-    		Extension.imports.prefsGtk3.init();
+    		Extension.imports.prefsGtk3;
     }
 }
 
@@ -17,9 +17,11 @@ function fillPreferencesWindow(window) {
 
 function buildPrefsWidget() {
     // something for gnome 3.xx
-    let widget = new Extension.imports.prefsGtk3.Prefs_AppGridTweaksExtension();
+    gtkVersion = Extension.imports.prefsGtk3;
+    gtkVersion.init();
+    let widget = new gtkVersion.Prefs_AppGridTweaksExtension();
     GLib.timeout_add(GLib.PRIORITY_DEFAULT, 0, ()=> {
-	  new widget.ExtensionPreferencesWindow_AppGridTweaksExtension( widget );
+	  new gtkVersion.ExtensionPreferencesWindow_AppGridTweaksExtension( widget );
     	    return false;
     });
     widget.show_all();
